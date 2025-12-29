@@ -2,78 +2,100 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>pra gente 💗</title>
+<title>Pra Mayla 🤍</title>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: #ffb3c6;
-    font-family: 'Courier New', monospace;
-    overflow: hidden;
-  }
-
-  /* animação do texto */
-  .texto {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 42px;
-    text-align: center;
-    animation: fadeZoom 3s ease-in-out infinite alternate;
-    font-weight: bold;
-    text-shadow: 3px 3px #ff4d6d;
-  }
-
-  @keyframes fadeZoom {
-    0% {
-      opacity: 0.3;
-      transform: translate(-50%, -50%) scale(0.9);
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.05);
+
+    body {
+        background: #0a0a0a;
+        color: #ffb7ef;
+        font-family: "Trebuchet MS", sans-serif;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
     }
-  }
 
-  /* corações subindo */
-  .heart {
-    position: absolute;
-    color: #ff4d6d;
-    font-size: 40px;
-    animation: floatHeart 4s infinite ease-in-out;
-  }
+    /* texto fixo */
+    .fixo {
+        font-size: 32px;
+        text-align: center;
+        max-width: 900px;
+        width: 80%;
+        color: #ffe0fa;
+        text-shadow: 0 0 8px #d6529e, 0 0 15px #d6529e;
+        line-height: 1.4;
+    }
 
-  @keyframes floatHeart {
-    0% { transform: translateY(0px); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: translateY(-200px); opacity: 0; }
-  }
+    /* texto animado */
+    .texto {
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 10px #ff64bd, 0 0 25px #ff64bd;
+        width: 80%;
+        max-width: 900px;
+    }
+
+    .texto::after {
+        content: "desculpa pelos meus erros 🤍";
+        animation: trocaTexto 15s infinite ease-in-out;
+    }
+
+    @keyframes trocaTexto {
+        0%   { content:"desculpa pelos meus erros 🤍"; }
+        33%  { content:"eu to tentando melhorar por você 💗"; }
+        66%  { content:"eu te amo demais 💖"; }
+        100% { content:"desculpa pelos meus erros 🤍"; }
+    }
+
+    /* corações descendo */
+    .heart {
+        position: fixed;
+        top: -10%;
+        font-size: 30px;
+        animation: cair linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes cair {
+        0% { transform: translateY(-10vh) rotate(0deg); }
+        100% { transform: translateY(110vh) rotate(360deg); }
+    }
 </style>
 </head>
 
 <body>
 
-<audio autoplay loop>
-  <source src="musga.mp3" type="audio/mpeg">
-</audio>
-
-<img src="euemomo.jpg" style="width:100vw; height:100vh; object-fit:cover; filter:brightness(45%);">
-
-<div class="texto">
-  desculpas pelos meus erros, eu te amo 💗
+<div class="fixo">
+    mesmo quando eu erro, meu coração sempre volta pra você.  
+    eu não quero ser perfeito, eu só quero ser alguém melhor pra caminhar do teu lado.  
+    obrigado por ainda me enxergar quando eu mesmo não consigo direito.
 </div>
 
-<!-- coraçãozinhos -->
-<span class="heart" style="top:80%; left:10%;">❤️</span>
-<span class="heart" style="top:90%; left:40%; animation-delay: 1s;">❤️</span>
-<span class="heart" style="top:85%; left:70%; animation-delay: 2s;">❤️</span>
-<span class="heart" style="top:95%; left:20%; animation-delay: 1.5s;">❤️</span>
-<span class="heart" style="top:88%; left:60%; animation-delay: 2.3s;">❤️</span>
+<div class="texto"></div>
+
+<script>
+    // gera corações caindo
+    const total = 25;
+    for (let i = 0; i < total; i++) {
+        let heart = document.createElement("div");
+        heart.innerText = "💖";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 6 + Math.random() * 6 + "s"; 
+        heart.style.fontSize = 20 + Math.random() * 40 + "px"; 
+        document.body.appendChild(heart);
+    }
+</script>
 
 </body>
 </html>
-
